@@ -1,0 +1,106 @@
+.home-container {
+	&__image-main {
+		width: 100%;
+		height: 750px;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-image: linear-gradient(transparent, $colorGrey 90%), url('https://todosobrecamisetas.com/wp-content/uploads/fc-barcelona-2022-23-nike-home-kit-h.jpg');
+	}
+	&__carrusel {
+		margin-top: -50px;
+	}
+	&__best-seller {
+		background-color: $colorBlack;
+		margin: auto;
+		text-align: center;
+		padding: 2rem 0;
+	}
+	&__title {
+		color: $colorWhite;
+	}
+	&__box-best-seller {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, 400px);
+		grid-gap: 1rem;
+		justify-content: center;
+	}
+	&__article {
+		margin: 1rem auto;
+		padding: 20px;
+		background-color: $colorWhite;
+		border-radius: 0.5rem;
+		-webkit-transition: 0.3s ease-in-out;
+		transition: 0.3s ease-in-out;
+		transition: 0.3s ease-in-out;
+		position: relative;
+		&:hover {
+			-webkit-transform: scale(1.1);
+			transform: scale(1.1);
+			height: 450px;
+		}
+		&:hover .home-container__overlay {
+			opacity: 1;
+			cursor: pointer;
+		}
+	}
+	&__image {
+		width: 280px;
+		border-radius: 0.5rem;
+		background-color: white;
+	}
+	&____price {
+		font-size: 24px;
+		font-weight: bold;
+	}
+	&__overlay {
+		object-fit: cover;
+		position: absolute;
+		bottom: 5px;
+		left: 10px;
+		right: 10px;
+		width: 94%;
+		height: 15%;
+		opacity: 0;
+		transition: 0.5s ease;
+		background-color: #1b1a17;
+		border-radius: 1rem;
+		font-weight: bold;
+	}
+
+	&__button {
+		text-decoration: none;
+		color: $colorWhite;
+		cursor: pointer;
+	}
+	&__videos-container {
+		margin: auto;
+		background-color: $colorWhite;
+		padding: 1rem 0;
+	}
+	&__videos-title {
+		color: $colorBlack;
+		text-align: center;
+		margin-bottom: 2rem;
+	}
+	&____box-videos {
+		display: flex;
+		flex-direction: column;
+	}
+	&__video {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-evenly;
+		margin: 0.5rem 0;
+		align-items: center;
+	}
+    
+    &__iframe {
+        width: 400px;
+        height: 200px;
+        border-radius: 0.5rem;
+      }
+    &__description{
+            color: $colorBlack;
+            width: 400px;
+    }
+}

@@ -1,0 +1,76 @@
+.article-container {
+	position: relative;
+	height: 22rem;
+	width: 17rem;
+	margin: 0.5rem;
+	padding: 0.2rem;
+	border-radius: 1rem;
+	border: 5px solid $colorBeige;
+	background-color: white;
+	grid-column: span 1;
+	grid-row: span 1;
+	opacity: 1;
+	-webkit-transition: all 1s;
+	transition: all 1s;
+	-webkit-transition: 0.3s ease-in-out;
+	transition: 0.3s ease-in-out;
+	transition: 0.3s ease-in-out;
+	&:hover {
+		-webkit-transform: scale(1.1);
+		transform: scale(1.1);
+		opacity: 0.8;
+	}
+	&__image {
+		display: flex;
+		justify-content: center;
+		img {
+			display: flex;
+			justify-content: center;
+			width: 16rem;
+			border-radius: 0.5rem;
+		}
+		&:hover {
+			text-decoration: none;
+			color: $colorWhite !important;
+		}
+	}
+	&____text-box {
+        color: $colorBlack;
+        text-decoration: none !important;
+        margin-top: 0.4rem;
+        height: 6rem;
+        padding-left: 0.2rem;
+	}
+	&__brand {
+		position: absolute;
+		width: 3rem;
+		top: 14rem;
+	}
+	&__title {
+        font-size: 18px;
+	}
+	&__price-box {
+        display: flex;
+        justify-content: space-between;
+	}
+	&__price {
+        text-decoration: none !important;
+        font-size: 26px;
+        font-weight: bold;
+	}
+	&__label {
+        position: absolute;
+        font-size: 16px;
+        font-weight: bold;
+        color: $colorWhite;
+        border-radius: 0.5rem;
+        padding: 0.4rem;
+        top: 1rem;
+	}
+	&__label--oferta {
+        background-color: green ;
+	}
+	&__label--nuevo {
+        background-color: orange ;
+	}
+}

@@ -1,0 +1,13 @@
+.shop-container{
+    margin: 0 1rem;
+	padding: 3rem 1.5rem;
+	border-radius: 1rem;
+	display: flex;
+	justify-content: space-evenly;
+	background-color: $colorWhite;
+    &__box-articles{
+		display: grid;
+		grid-gap: 25px;
+		grid-template-columns: repeat(3, 1fr);
+    }
+}

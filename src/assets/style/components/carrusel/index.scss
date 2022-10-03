@@ -1,0 +1,54 @@
+.carrusel-item-container{
+    position: relative;
+	width: 200px;
+	height: 120px;
+	margin-inline: 10px;
+	-webkit-transition: 0.3s ease-in-out;
+	transition: 0.3s ease-in-out;
+	transition: 0.3s ease-in-out;
+    &__image{
+        display: block;
+        width: 200px;
+        height: 120px;
+        border-radius: 1rem;
+        &:hover{
+            -webkit-transform: scale(1.02);
+            transform: scale(1.02);
+        }
+    }
+    &__overlay {
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: 0.5s ease;
+        background-color: $colorBlack;
+        border-radius: 1rem;
+        font-weight: bold;
+    }
+    &__carrusel-text {
+        color: white;
+        font-size: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+    &:hover {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+        cursor: pointer;
+        text-decoration: none;
+        &:hover .carrusel-item-container__overlay {
+            opacity: 0.85;
+        }
+    }
+}
