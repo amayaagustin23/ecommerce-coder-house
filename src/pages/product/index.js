@@ -1,3 +1,5 @@
+/* eslint-disable no-tabs */
+/* eslint-disable no-mixed-spaces-and-tabs */
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Accordion from '@material-ui/core/Accordion';
@@ -5,10 +7,13 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import Typography from '@material-ui/core/Typography';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ReactImageMagnify from 'react-image-magnify';
+import useCart from '../../hooks/useCart';
 
 const Product = () => {
   const [producto, setProducto] = useState();
   const { id } = useParams();
+  const { countCart: { count }, updateCount } = useCart();
   const loadingData = () => {
     const list = JSON.parse(localStorage.getItem('products'));
     setProducto(list.find((item) => item.id === parseInt(id, 10)));
@@ -23,7 +28,21 @@ const Product = () => {
         && (
         <div className="product-container">
           <div className="product-container__box-image">
-            <img src={producto.imagenes[0]} alt="" className="product-container__image" />
+            <ReactImageMagnify
+              imageClassName="imagenPrincipal"
+              {...{
+									  smallImage: {
+									    alt: 'Wristwatch by Ted Baker London',
+									    isFluidWidth: true,
+									    src: producto.imagenes[0],
+									  },
+									  largeImage: {
+									    src: producto.imagenes[0],
+									    width: 1000,
+									    height: 1000,
+									  },
+              }}
+            />
             <div className="product-container__all-images">
               {producto.imagenes.map((item) => (
                 <img key={item} className="product-container__extra-images" src={item} alt="" />
@@ -56,7 +75,7 @@ const Product = () => {
               </button>
             </div>
             <div className="product-container__box-cart">
-              <button type="button" className="product-container__button-cart">Agregar al carrito</button>
+              <button type="button" className="product-container__button-cart" onClick={() => updateCount(count + 1)}>Agregar al carrito</button>
               <input className="product-container__count-input" min={0} value={0} type="number" id="count" />
             </div>
           </div>

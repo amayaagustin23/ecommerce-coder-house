@@ -17,6 +17,7 @@ import Youtube from '../../assets/icons/socials/youtube.png';
 import Twitter from '../../assets/icons/socials/twitter.png';
 import { CONTACT_PATH, HOME_PATH, SHOP_PATH } from '../../routes/path';
 import CartWidget from '../cartWidget';
+import useCart from '../../hooks/useCart';
 
 const pages = [
   {
@@ -43,7 +44,7 @@ const ResponsiveAppBar = () => {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
+  const { countCart: { count } } = useCart();
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -121,7 +122,7 @@ const ResponsiveAppBar = () => {
             ))}
           </Box>
           <Box>
-            <CartWidget count={4} />
+            <CartWidget count={count} />
           </Box>
         </Toolbar>
       </Container>
