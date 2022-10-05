@@ -15,7 +15,7 @@ import Facebook from '../../assets/icons/socials/facebook.png';
 import Instagram from '../../assets/icons/socials/instagram.png';
 import Youtube from '../../assets/icons/socials/youtube.png';
 import Twitter from '../../assets/icons/socials/twitter.png';
-import { CONTACT_PATH, HOME_PATH, SHOP_PATH } from '../../routes/path';
+import { CONTACT_PATH, HOME_PATH } from '../../routes/path';
 import CartWidget from '../cartWidget';
 import useCart from '../../hooks/useCart';
 
@@ -26,11 +26,15 @@ const pages = [
   },
   {
     title: 'Shop',
-    route: SHOP_PATH,
+    route: '/shop/all',
   },
   {
     title: 'Contact',
     route: CONTACT_PATH,
+  },
+  {
+    title: 'Locales',
+    route: '/shop/Argentina',
   },
 
 ];
