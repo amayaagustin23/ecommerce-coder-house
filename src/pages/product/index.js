@@ -2,25 +2,59 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import Typography from '@material-ui/core/Typography';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ReactImageMagnify from 'react-image-magnify';
 import useCart from '../../hooks/useCart';
+import Loading from '../../components/loading';
+import DetailAccordion from './detailAccordion';
 
 const Product = () => {
   const [producto, setProducto] = useState();
+  const [mainImage, setMainImage] = useState();
+  const [size, setSize] = useState('');
+  const [countProduct, setCountProduct] = useState(0);
+  const [listCart, setListCart] = useState();
   const { id } = useParams();
   const { countCart: { count }, updateCount } = useCart();
+
   const loadingData = () => {
     const list = JSON.parse(localStorage.getItem('products'));
-    setProducto(list.find((item) => item.id === parseInt(id, 10)));
+    const productFind = list.find((item) => item.id === parseInt(id, 10));
+    setProducto(productFind);
+    setMainImage(productFind.imagenes[0]);
+    setListCart(JSON.parse(localStorage.getItem('listCart')));
   };
+
+  const handleImage = (img) => {
+    setMainImage(img);
+  };
+
+  const handleSize = (e) => {
+    setSize(e.target.value);
+  };
+  const handleCount = (e) => {
+    setCountProduct(e.target.value);
+  };
+
   useEffect(() => {
     loadingData();
   }, []);
+
+  const AddProductCart = () => {
+    const list = [];
+    if (listCart === undefined) setListCart([]);
+    if (countProduct === 0) {
+      alert('no se ingreso cantidad');
+    } else if (size === '') {
+      alert('no se ingreso talle');
+    } else {
+      const productCart = { ...producto, talle: size, cantidad: countProduct };
+      list.push(productCart);
+      setListCart(list);
+      alert(JSON.stringify(list));
+      localStorage.setItem('listCart', JSON.stringify(list));
+      updateCount(count + list.length);
+    }
+  };
 
   return (
     <div>
@@ -28,16 +62,16 @@ const Product = () => {
         && (
         <div className="product-container">
           <div className="product-container__box-image">
+            <Loading />
             <ReactImageMagnify
-              imageClassName="imagenPrincipal"
               {...{
 									  smallImage: {
-									    alt: 'Wristwatch by Ted Baker London',
+									    alt: producto.nombre,
 									    isFluidWidth: true,
-									    src: producto.imagenes[0],
+									    src: mainImage,
 									  },
 									  largeImage: {
-									    src: producto.imagenes[0],
+									    src: mainImage,
 									    width: 1000,
 									    height: 1000,
 									  },
@@ -45,7 +79,9 @@ const Product = () => {
             />
             <div className="product-container__all-images">
               {producto.imagenes.map((item) => (
-                <img key={item} className="product-container__extra-images" src={item} alt="" />
+                <button className="product-container__extra-images-button" key={item} onClick={() => handleImage(item)} type="button">
+                  <img className="product-container__extra-images" src={item} alt="" />
+                </button>
               ))}
             </div>
           </div>
@@ -61,78 +97,18 @@ const Product = () => {
               {new Intl.NumberFormat('de-DE').format(producto.precio)}
             </h3>
             <div className="product-container__box-sizes">
-              <button type="button" className="product-container__size" value="S">
-                S
-              </button>
-              <button type="button" className="product-container__size" value="M">
-                M
-              </button>
-              <button type="button" className="product-container__size" value="L">
-                L
-              </button>
-              <button type="button" className="product-container__size" value="XL">
-                XL
-              </button>
+              {producto.tallesDisponibles.map((item) => (
+                <button type="button" key={item} onClick={handleSize} className={item !== size ? 'product-container__size' : 'product-container__size product-container__active-size'} value={item}>
+                  {item}
+                </button>
+              ))}
             </div>
             <div className="product-container__box-cart">
-              <button type="button" className="product-container__button-cart" onClick={() => updateCount(count + 1)}>Agregar al carrito</button>
-              <input className="product-container__count-input" min={0} value={0} type="number" id="count" />
+              <button type="button" className="product-container__button-cart" onClick={AddProductCart}>Agregar al carrito</button>
+              <input className="product-container__count-input" onChange={handleCount} value={countProduct} min={0} type="number" />
             </div>
           </div>
-          <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography>Descripcion</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <div className="product-container__description-container">
-                <div className="product-container__description">
-                  <p>{producto.descripcion}</p>
-                </div>
-                <div className="product-container__box-description">
-                  <ol className="product-container__list-description">
-                    <li>
-                      <span className="product-container__item-description">Género:</span>
-                      {producto.genero}
-                    </li>
-                    <li>
-                      <span className="product-container__item-description">Material:</span>
-                      Poliéster
-                    </li>
-                    <li>
-                      <span className="product-container__item-description">Manga: </span>
-                      Corta
-                    </li>
-                    <li>
-                      <span className="product-container__item-description">Garantía:</span>
-                      Contra defecto de fabricación.
-                    </li>
-                    <li>
-                      <span className="product-container__item-description">Marca: </span>
-                      {producto.marca}
-                    </li>
-                  </ol>
-                  <ol className="product-container__list-description">
-                    <li>
-                      <span className="product-container__item-description">Cuello:</span>
-                      {producto.cuello}
-                    </li>
-                    <li>
-                      <span className="product-container__item-description">Calce:</span>
-                      {producto.calce}
-                    </li>
-                    <li>
-                      <span className="product-container__item-description">Liga: </span>
-                      {producto.liga}
-                    </li>
-                  </ol>
-                </div>
-              </div>
-            </AccordionDetails>
-          </Accordion>
+          <DetailAccordion data={producto} />
         </div>
         )}
     </div>

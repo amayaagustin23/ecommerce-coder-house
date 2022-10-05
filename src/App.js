@@ -13,6 +13,7 @@ function App() {
   useEffect(() => {
     setLocalStorage();
   }, []);
+
   const updateCount = (value) => {
     setCountCart({ ...countCart, count: value });
   };

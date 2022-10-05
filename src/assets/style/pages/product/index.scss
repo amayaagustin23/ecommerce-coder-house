@@ -10,17 +10,15 @@
 	&__box-image {
 		width: 30rem;
 	}
-	&__image {
-		transition: opacity 0.5s;
-		display: block;
-		width: 100%;
-		border: 5px solid $colorBeige;
-		border-radius: 1rem;
-		margin-bottom: 1rem;
-	}
 	&__all-images {
 		display: flex;
 		justify-content: center;
+		margin: 1rem 0;
+	}
+	&__extra-images-button{
+		border: none;
+		background: transparent;
+		cursor: pointer;
 	}
 	&__extra-images {
 		width: 8rem;
@@ -37,8 +35,6 @@
 	&__title {
 		font-size: 40px;
 		margin-top: 1rem;
-	}
-	&__code {
 	}
 	&__price {
 		font-size: 4rem;
@@ -64,13 +60,13 @@
 		border-radius: 1rem !important;
 		margin-inline: 10px;
 		&:hover {
-			background-color: $colorYellow;
-			color: $colorBlack;
+			background-color: $colorGrey;
+			color: $colorWhite;
 		}
 		border: $colorOrange 1px solid;
 		border-radius: 2rem;
 		-webkit-transition: all 1s;
-		transition: all 1s;
+		transition: all .3s;
 		&:hover {
 			border: $colorOrange 1px solid;
 			-webkit-transform: scale(1.1);
@@ -124,6 +120,10 @@
 	}
 	&__item-description {
 		font-weight: bold;
+	}
+
+	&__active-size{
+		background-color: $colorYellow;
 	}
 }
 @media screen and (max-width: 1200px) {
