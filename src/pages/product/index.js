@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ReactImageMagnify from 'react-image-magnify';
 import useCart from '../../hooks/useCart';
-import Loading from '../../components/loading';
 import DetailAccordion from './detailAccordion';
 
 const Product = () => {
@@ -14,7 +13,7 @@ const Product = () => {
   const [countProduct, setCountProduct] = useState(0);
   const [listCart, setListCart] = useState();
   const { id } = useParams();
-  const { countCart: { count }, updateCount } = useCart();
+  const { updateCount } = useCart();
 
   const loadingData = () => {
     const list = JSON.parse(localStorage.getItem('products'));
@@ -48,11 +47,11 @@ const Product = () => {
       alert('no se ingreso talle');
     } else {
       const productCart = { ...producto, talle: size, cantidad: countProduct };
-      list.push(productCart);
+      list.push(...listCart, productCart);
       setListCart(list);
       alert(JSON.stringify(list));
       localStorage.setItem('listCart', JSON.stringify(list));
-      updateCount(count + list.length);
+      updateCount(list.length);
     }
   };
 
@@ -62,7 +61,6 @@ const Product = () => {
         && (
         <div className="product-container">
           <div className="product-container__box-image">
-            <Loading />
             <ReactImageMagnify
               {...{
 									  smallImage: {
