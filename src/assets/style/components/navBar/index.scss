@@ -58,3 +58,26 @@ header {
 	font-family: "Montserrat", sans-serif; 
 	font-weight: bold;
 }
+#menu-appbar-shop{
+	width: 150px;
+	height: 250px;
+	margin-top: 90px;
+	position: relative;
+	div{
+		z-index: 1;
+		background-color: $colorGrey;
+		width: 150px;
+		position: absolute;
+		top:20px !important;
+		ul{
+			li{
+				a{
+					p{
+						color: $colorWhite !important;
+
+					}
+				}
+			}
+		}
+	}
+}
