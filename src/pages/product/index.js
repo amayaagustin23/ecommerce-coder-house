@@ -2,13 +2,14 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import ReactImageMagnify from 'react-image-magnify';
 import useCart from '../../hooks/useCart';
 import DetailAccordion from './detailAccordion';
+import Images from './seccionImages';
 
 const Product = () => {
   const [producto, setProducto] = useState();
   const [mainImage, setMainImage] = useState();
+  // const [isLoading, setIsLoading] = useState(false);
   const [size, setSize] = useState('');
   const [countProduct, setCountProduct] = useState(0);
   const [listCart, setListCart] = useState();
@@ -61,27 +62,11 @@ const Product = () => {
         && (
         <div className="product-container">
           <div className="product-container__box-image">
-            <ReactImageMagnify
-              {...{
-									  smallImage: {
-									    alt: producto.nombre,
-									    isFluidWidth: true,
-									    src: mainImage,
-									  },
-									  largeImage: {
-									    src: mainImage,
-									    width: 1000,
-									    height: 1000,
-									  },
-              }}
+            <Images
+              data={producto}
+              mainImage={mainImage}
+              onImage={handleImage}
             />
-            <div className="product-container__all-images">
-              {producto.imagenes.map((item) => (
-                <button className="product-container__extra-images-button" key={item} onClick={() => handleImage(item)} type="button">
-                  <img className="product-container__extra-images" src={item} alt="" />
-                </button>
-              ))}
-            </div>
           </div>
           <div className="product-container__box">
             <h1 className="product-container__title">{producto.nombre}</h1>

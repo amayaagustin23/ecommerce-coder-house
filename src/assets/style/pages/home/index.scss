@@ -66,11 +66,19 @@
 		border-radius: 1rem;
 		font-weight: bold;
 	}
-
 	&__button {
 		text-decoration: none;
 		color: $colorWhite;
 		cursor: pointer;
+	}
+	&__link {
+		color: $colorWhite;
+		font-size: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
 	}
 	&__videos-container {
 		margin: auto;

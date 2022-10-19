@@ -7,7 +7,9 @@ import { Link } from 'react-router-dom';
 
 const SliderContainer = ({ data }) => {
   const settings = {
-    dots: true,
+    className: 'center',
+    arrows: false,
+    dots: false,
     infinite: true,
     slidesToShow: 7,
     slidesToScroll: 1,

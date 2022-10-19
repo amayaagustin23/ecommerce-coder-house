@@ -1,0 +1,132 @@
+.cart-container {
+	background-color: $white;
+	position: fixed;
+	width: 29rem;
+	height: 100vh;
+	top: 0;
+	right: 0;
+	z-index: 1;
+
+    &__close-box{
+        display: flex;
+        justify-content: flex-end; 
+        padding: 1rem;
+    }
+    &__close{
+        background-color: transparent;
+        border: none;
+        :hover{
+            cursor: pointer;
+        }
+    }
+    &__product-container{
+        margin-block: 3rem;
+        height: 35rem;
+        overflow-y: auto;
+    }
+	&__header {
+		border-bottom: 1px $greyWhite solid;
+		border-top: 1px $greyWhite solid;
+		display: flex;
+		padding: 0.5rem 3rem;
+		justify-content: space-between;
+	}
+	&__product {
+		display: flex;
+		padding: 0.5rem 2rem;
+		justify-content: space-between;
+        border-bottom: 1px $greyWhite solid;
+	}
+	&__box {
+		width: 12rem;
+		display: flex;
+		flex-direction: column;
+	}
+	&__imagen {
+		width: 4rem;
+	}
+	&__name {
+		font-size: 12px;
+	}
+	&__text-box {
+		padding-left: 10px;
+	}
+	&__price {
+		font-size: 15px;
+	}
+	&__detail {
+		width: 12rem;
+		display: flex;
+	}
+	&__box-count {
+		width: 5rem;
+		display: flex;
+		align-items: center;
+		padding: 0.5rem 2rem;
+		input {
+			width: 5rem;
+			padding: 0.2rem;
+			font-size: 18px;
+		}
+		button {
+			padding: 0.2rem 0.6rem;
+			background-color: transparent;
+			font-size: 18px;
+			font-weight: bold;
+		}
+	}
+	&__box-delete {
+		display: flex;
+		gap: 10px;
+        align-items: flex-start;
+        button{
+            border:none;
+            background-color: transparent;
+        }
+	}
+    &__subtotal{
+        padding: .8rem 1.3rem;
+        display: flex;
+        justify-content: space-between;
+        h3{
+            color: $grey;
+
+        }
+    }
+    &__subtotal-text{
+        color: $grey;
+        font-weight: lighter;
+    }
+    &__total{
+        padding: .8rem 1.3rem;
+        display: flex;
+        justify-content: space-between;
+        font-size: 30px;
+        h4{
+            color: $beige;
+
+        }
+    }
+    &__action{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    &__link{
+        color: $beige;
+        text-decoration: underline;
+        font-size: 15px;
+    }
+}
+
+@keyframes reboteOut_izquierda {
+	25% {
+		transform: translateX(100px);
+		opacity: 1;
+	}
+
+	100% {
+		transform: translateX(40vh);
+		opacity: 1;
+	}
+}

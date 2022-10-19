@@ -1,84 +1,49 @@
-header {
-	background-color: $colorBlack !important;
-	.MuiButton-label {
-		color: $colorWhite;
-		font-weight: bold;
-		font-size: 20px;
-	}
-}
-.route {
-	color: $colorWhite;
-	margin-inline: 20px;
-	text-decoration: none;
-	font-family: "Montserrat", sans-serif; 
-	font-weight: bold;
-}
-.routeRes {
-	color: $colorBlack;
-	width: 40px;
-	text-decoration: none;
-	font-family: "Montserrat", sans-serif; 
-	font-weight: bold;
-}
-.navbar-socials {
-	display: flex;
-	&__icon {
-		margin-inline: 0.3rem;
-		-webkit-transition: all 0.5s;
-		transition: all 0.5s;
-		&:hover {
-			border-radius: 50%;
-			padding: 2px;
-			-webkit-transform: scale(1.1);
-			transform: scale(1.1);
-		}
-	}
-}
 .navbar-container{
 	display: flex;
-	justify-content: space-between;
-	padding: 0 20px;
-}
-.MuiSvgIcon-root{
-	color: $colorWhite;
-}
-.MuiList-padding{
-	padding: 20px 20px !important;
-}
-.MuiPaper-root--nav{
-	top:120px !important;
-	left:40px !important;
-}
-.route-active{
-	background-color: $colorYellow;
-	border-bottom: 3px solid $colorGrey;
-	color: $colorBlack;
-	margin-inline: 20px;
-	text-decoration: none;
-	font-family: "Montserrat", sans-serif; 
-	font-weight: bold;
-}
-#menu-appbar-shop{
-	width: 200px;
-	height: 250px;
-	margin-top: 90px;
-	position: relative;
-	div{
-		z-index: 1;
+	flex-direction: column;
+	&__info{
+		display: flex;
+		justify-content: center;
+		background-color: $colorOrange;
+		color: $colorBlack;
+	}
+	&__header{
+		display: flex;
+		justify-content: space-between;
+		padding: .5rem 2rem;
 		background-color: $colorGrey;
-		width: 150px;
-		position: absolute;
-		top:25px !important;
-		left: 250px !important;
-		ul{
-			li{
-				a{
-					p{
-						color: $colorWhite !important;
-
-					}
-				}
-			}
+	}
+	&__logo-container{
+		display: flex;
+		justify-content: center;
+		width: 15rem;
+		img{
+			width: 5rem;
+		}
+	}
+	&__cart-container{
+		display: flex;
+		flex-direction: column;
+		width: 15rem;
+		align-items: center;
+	}
+	&__nav{
+		background-color: $colorGrey;
+		padding: .5rem 5rem;
+		display: flex;
+		justify-content: center;
+		gap:2rem;
+	}
+	&__route{
+		color: $colorWhite;
+		font-weight: bold;
+		padding: .5rem 0;
+		width: 5rem;
+		text-align: center;
+		font-size: 23px;
+		&:hover{
+			border-bottom: $colorOrange 3px solid;
+			background-color: $colorBlack;
 		}
 	}
 }

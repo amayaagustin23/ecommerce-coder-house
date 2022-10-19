@@ -1,20 +1,28 @@
 .carrusel-item-container{
     position: relative;
-	width: 200px;
+	max-width: 200px;
 	height: 120px;
-	margin-inline: 10px;
 	-webkit-transition: 0.3s ease-in-out;
 	transition: 0.3s ease-in-out;
 	transition: 0.3s ease-in-out;
     &__image{
         display: block;
-        width: 200px;
-        height: 120px;
+        width: 100%;
+        height: 100%;
         border-radius: 1rem;
         &:hover{
-            -webkit-transform: scale(1.02);
-            transform: scale(1.02);
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
         }
+    }
+    &__carrusel-text {
+        color: white;
+        font-size: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
     }
     &__overlay {
         object-fit: cover;
@@ -31,22 +39,13 @@
         border-radius: 1rem;
         font-weight: bold;
     }
-    &__carrusel-text {
-        color: white;
-        font-size: 20px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        -webkit-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-        text-align: center;
-    }
+
     &:hover {
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1);
+        -webkit-transform: scale(1.02);
+        transform: scale(1.02);
         cursor: pointer;
         text-decoration: none;
+        width: 100% !important;
         &:hover .carrusel-item-container__overlay {
             opacity: 0.85;
         }

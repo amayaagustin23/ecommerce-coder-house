@@ -6,9 +6,10 @@ const Home = () => {
   const [products, setProducts] = useState([]);
   const [news, setNews] = useState([]);
 
-  useEffect(() => {
+  useEffect(async () => {
     setNews(JSON.parse(localStorage.getItem('news')));
-    setProducts(JSON.parse(localStorage.getItem('products')));
+    const productsList = await JSON.parse(localStorage.getItem('products')).slice(0, 4);
+    setProducts(productsList);
   }, []);
 
   return (
@@ -31,7 +32,7 @@ const Home = () => {
                 </p>
                 <div className="home-container__overlay">
                   <div className="home-container__button">
-                    <Link to={`/product/${item.id}`}>
+                    <Link className="home-container__link" to={`/product/${item.id}`}>
                       comprar
                     </Link>
                   </div>

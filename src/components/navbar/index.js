@@ -1,221 +1,79 @@
 import React, { useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import AppBar from '@material-ui/core/AppBar';
-import Box from '@material-ui/core/Box';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import Menu from '@material-ui/core/Menu';
-import Container from '@material-ui/core/Container';
-import Button from '@material-ui/core/Button';
-import MenuItem from '@material-ui/core/MenuItem';
-import MenuIcon from '@material-ui/icons/Menu';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Logo from '../../assets/logo/logo.png';
-import Facebook from '../../assets/icons/socials/facebook.png';
-import Instagram from '../../assets/icons/socials/instagram.png';
-import Youtube from '../../assets/icons/socials/youtube.png';
-import Twitter from '../../assets/icons/socials/twitter.png';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {
   ABOUT_PATH, CONTACT_PATH, HELP_PATH
 } from '../../routes/path';
 import CartWidget from '../cartWidget';
+import Logo from '../../assets/logo/logo.png';
 import useCart from '../../hooks/useCart';
+import Search from '../search';
 
 const pages = [
   {
-    title: 'Help',
+    title: 'HELP',
     route: HELP_PATH,
   },
   {
-    title: 'Contact',
+    title: 'CONTACT',
     route: CONTACT_PATH,
   },
   {
-    title: 'About',
+    title: 'ABOUT',
     route: ABOUT_PATH,
   }
 ];
 
-const tienda = [
-  {
-    title: 'Argentina',
-    route: '/shop/Argentina',
-  },
-  {
-    title: 'España',
-    route: '/shop/España',
-  },
-  {
-    title: 'Inglaterra',
-    route: '/shop/Inglaterra',
-  },
-];
+// const tienda = [
+//   {
+//     title: 'Argentina',
+//     route: '/shop/Argentina',
+//   },
+//   {
+//     title: 'España',
+//     route: '/shop/España',
+//   },
+//   {
+//     title: 'Inglaterra',
+//     route: '/shop/Inglaterra',
+//   },
+// ];
 
-const ResponsiveAppBar = () => {
-  const [anchorElNav, setAnchorElNav] = useState(null);
-  const [anchorElNavShop, setAnchorElNavShop] = useState(null);
-
-  const handleOpenNavMenu = (event) => {
-    console.log(event.currentTarget);
-    setAnchorElNav(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-  const handleOpenNavMenuShop = (event) => {
-    console.log(event.currentTarget);
-    setAnchorElNavShop(event.currentTarget);
-    if (anchorElNavShop !== null) setAnchorElNavShop(null);
-  };
-
-  const handleCloseNavMenuShop = () => {
-    setAnchorElNavShop(null);
-  };
+const Navbar = ({ onShow }) => {
   const { countCart: { count } } = useCart();
+  const [logued] = useState(false);
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters className="navbar-container">
-          <Link to="/">
-            <img src={Logo} alt="" width="50" />
-          </Link>
-          <Box>
-            <div className="navbar-socials">
-              <a className="navbar-socials__icon" target="_blank" href="https://www.facebook.com/search/top?q=style%20pics%20sports" rel="noreferrer"><img src={Facebook} alt="facebook" width="32" /></a>
-              <a className="navbar-socials__icon" target="_blank" href="https://www.instagram.com/stylepics.sports/" rel="noreferrer"><img src={Instagram} alt="instagram" width="32" /></a>
-              <a className="navbar-socials__icon" target="_blank" href="https://twitter.com/home" rel="noreferrer"><img src={Twitter} alt="twitter" width="32" /></a>
-              <a className="navbar-socials__icon" target="_blank" href="https://www.youtube.com/" rel="noreferrer"><img src={Youtube} alt="youtube" width="32" /></a>
-            </div>
-          </Box>
-        </Toolbar>
-      </Container>
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page.title} onClick={handleCloseNavMenu}>
-                  <NavLink className="routeRes" to={page.route}>
-                    <Typography>
-                      {page.title}
-                    </Typography>
-                  </NavLink>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <NavLink
-              className={(isActive) => `route${!isActive ? '-active' : ''}`}
-              to="/"
-            >
-              <Button
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                <Typography>
-                  HOME
-                </Typography>
-              </Button>
-            </NavLink>
-            <NavLink
-              className={(isActive) => `route${!isActive ? '-active' : ''}`}
-              to="/shop/all"
-            >
-              <Button
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                <Typography>
-                  SHOP
-                </Typography>
-              </Button>
-            </NavLink>
-            <IconButton
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenuShop}
-              color="inherit"
-            >
-              <ExpandMoreIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar-shop"
-              anchorEl={anchorElNavShop}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNavShop)}
-              onClose={handleCloseNavMenuShop}
-            >
-              {tienda.map((page) => (
-                <MenuItem key={page.title} onClick={handleCloseNavMenuShop}>
-                  <NavLink className="routeRes" to={page.route}>
-                    <Typography>
-                      {page.title}
-                    </Typography>
-                  </NavLink>
-                </MenuItem>
-              ))}
-            </Menu>
-            {pages.map((page) => (
-              <NavLink
-                className={(isActive) => `route${!isActive ? '-active' : ''}`}
-                to={page.route}
-              >
-                <Button
-                  key={page.title}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: 'white', display: 'block' }}
-                >
-                  <Typography>
-                    {page.title}
-                  </Typography>
-                </Button>
-              </NavLink>
-            ))}
-
-          </Box>
-          <Box>
+    <div className="navbar-container">
+      <div className="navbar-container__info">
+        <p>Envíos a todo el país</p>
+      </div>
+      <div className="navbar-container__header">
+        <Link to="/" className="navbar-container__logo-container">
+          <img src={Logo} alt="SPS" />
+        </Link>
+        <div className="navbar-container__search-container">
+          <Search />
+        </div>
+        <div className="navbar-container__cart-container">
+          <button type="button" onClick={onShow}>
             <CartWidget count={count} />
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
+          </button>
+          <div>
+            {logued ? <Link to="/me">Mi cuenta</Link>
+              : <Link to="/login">Iniciar Session</Link>}
+          </div>
+        </div>
+      </div>
+      <div className="navbar-container__nav">
+        {pages.map(({ title, route }) => (
+          <Link className="navbar-container__route" to={route}>{title}</Link>
+        ))}
+      </div>
+    </div>
   );
 };
-export default ResponsiveAppBar;
+Navbar.propTypes = {
+  onShow: PropTypes.func.isRequired,
+};
+
+export default Navbar;
